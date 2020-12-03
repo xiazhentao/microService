@@ -1,6 +1,5 @@
 package com.xiazhengtao.microservice.service.impl;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiazhengtao.microservice.domain.User;
@@ -8,6 +7,7 @@ import com.xiazhengtao.microservice.mapper.UserMapper;
 import com.xiazhengtao.microservice.moudles.Response;
 import com.xiazhengtao.microservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -21,11 +21,11 @@ import java.util.function.Predicate;
  */
 @Service
 @Slf4j
-@DS("master")
+//@DS("master")
 public class UserviceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-//    @Autowired
-//    UserMapper userMapper;
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public Response add(User user) {
