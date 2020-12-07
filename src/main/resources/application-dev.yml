@@ -22,6 +22,7 @@ spring:
           password: root
           driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
           type: com.alibaba.druid.pool.DruidDataSource
+          pool-name: pdamanagerDB
           druid:
             initial-size: 5
             max-active: 20
@@ -29,7 +30,6 @@ spring:
             max-wait: 3000
             min-evictable-idle-time-millis: 30000
             max-evictable-idle-time-millis: 30000
-            poolName: pdamanagerDB
 #        slave_1:
 #            url: jdbc:mysql://10.211.55.5:3316/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
 #            username: root
