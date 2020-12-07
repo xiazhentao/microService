@@ -1,6 +1,6 @@
 package com.xiazhengtao.microservice.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiazhengtao.microservice.domain.User;
 import com.xiazhengtao.microservice.mapper.UserMapper;
@@ -54,10 +54,9 @@ public class UserviceImpl extends ServiceImpl<UserMapper, User> implements UserS
     @Override
     public Response getUserByAge(User user) {
         Response<List<User>> response = new Response<>();
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.eq("age", 23).eq("address","清河县");
-
-
+        LambdaQueryWrapper<User> userQueryWrapper = new LambdaQueryWrapper();
+        userQueryWrapper.eq(User::getAge, 23)
+                .eq(User::getAddress,"清河县");
         final List<User> users =  this.baseMapper.selectList(userQueryWrapper);
         if (CollectionUtils.isEmpty(users)) {
             response.setCode(300);
