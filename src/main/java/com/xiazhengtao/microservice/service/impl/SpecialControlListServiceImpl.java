@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 服务实现类
  * </p>
  *
- * @author jobob
+ * @author xiazhengtao
  * @since 2020-12-03
  */
 @Service
@@ -41,11 +41,11 @@ public class SpecialControlListServiceImpl extends ServiceImpl<SpecialControlLis
             response.setResult(false);
             return response;
         }
-        final AtomicInteger atomicInteger = new AtomicInteger();
+        final AtomicInteger atomicInteger = new AtomicInteger(1);
         specialControls.stream().forEach( specialControl -> {
             specialControl.setCreateTime(LocalDateTime.now());
             specialControl.setVersionNo(System.currentTimeMillis());
-            specialControl.setZDescribe("一键派件管控");
+            specialControl.setZDescribe(specialControl.getZDescribe());
             specialControl.setZStatus("0");
             if (this.save(specialControl)) {
                 log.info("插入数据库成功,记录{}条数据{}",atomicInteger.getAndIncrement(), JSONUtil.toJsonStr(specialControl));
